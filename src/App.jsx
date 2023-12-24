@@ -14,11 +14,11 @@ function App() {
     console.log("Theme Value:", themeValue);
     switch (themeValue) {
       case 1:
-        return "#434A59"; // Replace with the color for theme 1
+        return "#434A59";
       case 2:
-        return "#E5E4E1"; // Replace with the color for theme 2
+        return "#E5E4E1";
       case 3:
-        return "#331C4D"; // Replace with the color for theme 3
+        return "#331C4D";
       default:
         return "#434A59";
     }
@@ -103,12 +103,15 @@ function App() {
           </p>
         </div>
         <div className="bg-[#242D44] rounded-[10px]">
-          <div className=" w-[327px] h-[430px] grid grid-cols-4 gap-y-[13px] p-[24px]">
+          <div className=" w-[327px]  grid grid-cols-4 gap-y-[13px] gap-x-[13px] p-[24px]">
             {[7, 8, 9, "DEL", 4, 5, 6, "+", 1, 2, 3, "-", ".", 0, "/", "*"].map(
               (item, index) => (
                 <button
                   key={index}
-                  className="box-shadow w-[60px] h-[64px] bg-[#EAE3DC]"
+                  className={`box-shadow w-[60px] h-[64px]
+                  ${
+                    item === "DEL" ? "bg-[#647198]" : "bg-[#EAE3DC]"
+                  } rounded-[5px]`}
                   onClick={() => {
                     if (Number.isInteger(item) || item === ".") {
                       handleNumberClick(item);
@@ -130,14 +133,14 @@ function App() {
             {" "}
             <button
               onClick={handleResetClick}
-              className=" res-but w-[133px] h-[64px] bg-[#647198]"
+              className=" res-but w-[133px] h-[64px] bg-[#647198] rounded-[5px]"
             >
               {" "}
               RESET
             </button>{" "}
             <button
               onClick={handleEqualsClick}
-              className=" eq-but w-[133px] h-[64px] bg-[#D03F2F] "
+              className=" eq-but w-[133px] h-[64px] bg-[#D03F2F] rounded-[5px]"
             >
               =
             </button>
