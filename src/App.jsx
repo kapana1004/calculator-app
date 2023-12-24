@@ -1,4 +1,5 @@
 import { useState } from "react";
+// import styles from "Style.css";
 
 function App() {
   const [themeValue, setThemeValue] = useState(1);
@@ -98,7 +99,7 @@ function App() {
           </div>
         </div>
         <div className=" flex items-center justify-end w-[327px] h-[88px] bg-[rgb(24,31,51)] rounded-[10px] mb-[24px]">
-          <p className=" text-[#FFFFFF] text-[48px] pr-[24px]">
+          <p className=" text-[#FFFFFF] text-[40px] pr-[24px]">
             {displayValue}
           </p>
         </div>
@@ -112,6 +113,11 @@ function App() {
                   ${
                     item === "DEL" ? "bg-[#647198]" : "bg-[#EAE3DC]"
                   } rounded-[5px]`}
+                  style={
+                    item === "DEL"
+                      ? { boxShadow: "0px -4px 0px 0px #414E73 inset" }
+                      : { boxShadow: "0px -4px 0px 0px #B3A497 inset" }
+                  }
                   onClick={() => {
                     if (Number.isInteger(item) || item === ".") {
                       handleNumberClick(item);
