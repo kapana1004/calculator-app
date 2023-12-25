@@ -24,6 +24,44 @@ function App() {
         return "#434A59";
     }
   };
+  const getTextColor = (themeValue) => {
+    console.log("Theme text:", themeValue);
+    switch (themeValue) {
+      case 1:
+        return "#FFFFFF";
+      case 2:
+        return "#36362C";
+      case 3:
+        return "#FFE53D";
+      default:
+        return "#FFFFFF";
+    }
+  };
+  const getButtonTextColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#434A59";
+      case 2:
+        return "#36362C";
+      case 3:
+        return "#FFE53D";
+      default:
+        return "#434A59";
+    }
+  };
+
+  const getBoxShadow = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "0px -4px 0px 0px #414E73 inset";
+      case 2:
+        return "0px -4px 0px 0px #1B6066 inset";
+      case 3:
+        return "0px -4px 0px 0px #BE15F4 inset";
+      default:
+        return "0px -4px 0px 0px #414E73 inset";
+    }
+  };
 
   const handleNumberClick = (number) => {
     setDisplayValue((prevValue) =>
@@ -71,21 +109,34 @@ function App() {
   };
   return (
     <div
-      className={`bg-[${getBackgroundColor(themeValue)}] 
-      min-h-[100vh] min-w-[100vw] flex justify-center items-center`}
+      className={` min-h-[100vh] min-w-[100vw] flex justify-center pt-[30px]`}
+      style={{ backgroundColor: getBackgroundColor(themeValue) }}
     >
       <div>
-        <div className=" flex flex-row items-center justify-between">
-          <h1 className=" text-[#FFFFFF] text-[32px] font-bold">calc</h1>
+        <div className=" flex flex-row items-center justify-between pl-[10px]">
+          <h1
+            className={` text-[32px] font-bold`}
+            style={{ color: getTextColor(themeValue) }}
+          >
+            calc
+          </h1>
           <div className=" flex flex-row">
-            <span className=" text-[12px] text-white pt-[35px] pr-[31px]  ">
+            <span
+              className=" text-[12px] text-white pt-[45px] pr-[31px] font-bold"
+              style={{ color: getTextColor(themeValue) }}
+            >
               THEME
             </span>
             <label
               htmlFor="themerange"
-              className=" flex flex-col mb-[32px] pt-[8px]"
+              className=" flex flex-col mb-[32px] pt-[20px]"
             >
-              <span className="pl-[10px] tracking-[14px]  text-white">123</span>
+              <span
+                className="pl-[10px] tracking-[14px]  text-white"
+                style={{ color: getTextColor(themeValue) }}
+              >
+                123
+              </span>
               <input
                 className=" w-[71px] h-[26px] appearance-none bg-[#242D44] rounded-[13px] pl-[5px] pr-[5px]"
                 type="range"
@@ -99,7 +150,10 @@ function App() {
           </div>
         </div>
         <div className=" flex items-center justify-end w-[327px] h-[88px] bg-[rgb(24,31,51)] rounded-[10px] mb-[24px]">
-          <p className=" text-[#FFFFFF] text-[40px] pr-[24px]">
+          <p
+            className=" text-[#FFFFFF] text-[40px] pr-[24px]"
+            style={{ color: getTextColor(themeValue) }}
+          >
             {displayValue}
           </p>
         </div>
@@ -115,8 +169,13 @@ function App() {
                   } rounded-[5px]`}
                   style={
                     item === "DEL"
-                      ? { boxShadow: "0px -4px 0px 0px #414E73 inset" }
-                      : { boxShadow: "0px -4px 0px 0px #B3A497 inset" }
+                      ? {
+                          boxShadow: getBoxShadow(themeValue),
+                        }
+                      : {
+                          boxShadow: "0px -4px 0px 0px #B3A497 inset",
+                          color: getButtonTextColor(themeValue),
+                        }
                   }
                   onClick={() => {
                     if (Number.isInteger(item) || item === ".") {
