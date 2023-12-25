@@ -11,6 +11,32 @@ function App() {
     setThemeValue(parseInt(e.target.value, 10));
   };
 
+  // const getThumbColor = (themeValue) => {
+  //   switch (themeValue) {
+  //     case 1:
+  //       return "#D03F2F";
+  //     case 2:
+  //       return "#C85402";
+  //     case 3:
+  //       return "#00DED0";
+  //     default:
+  //       return "#D03F2F";
+  //   }
+  // };
+  // const sliderThumbStyle = {
+  //   WebkitAppearance: "none",
+  //   appearance: "none",
+  //   borderRadius: "50%",
+  //   width: "16px",
+  //   height: "16px",
+  //   backgroundColor: getThumbColor(themeValue),
+  // };
+
+  // const inputElement = document.getElementById("themerange");
+  // if (inputElement) {
+  //   Object.assign(inputElement.style, sliderThumbStyle);
+  // }
+
   const getBackgroundColor = (themeValue) => {
     console.log("Theme Value:", themeValue);
     switch (themeValue) {
@@ -22,6 +48,78 @@ function App() {
         return "#331C4D";
       default:
         return "#434A59";
+    }
+  };
+  const getDelBackgroundColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#647198";
+      case 2:
+        return "#378187";
+      case 3:
+        return "#56077C";
+      default:
+        return "#647198";
+    }
+  };
+  const getOtherBackgroundColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#EAE3DC";
+      case 2:
+        return "#E5E4E1";
+      case 3:
+        return "#331C4D";
+      default:
+        return "#EAE3DC";
+    }
+  };
+  const getResetBackgroundColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#647198";
+      case 2:
+        return "#378187";
+      case 3:
+        return "#56077C";
+      default:
+        return "#647198";
+    }
+  };
+  const getEqualBackgroundColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#D03F2F";
+      case 2:
+        return "#C85402";
+      case 3:
+        return "#00DED0";
+      default:
+        return "#D03F2F";
+    }
+  };
+  const getDisplayBackgroundColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#181F33";
+      case 2:
+        return "#EEEEEE";
+      case 3:
+        return "#1E0936";
+      default:
+        return "#181F33";
+    }
+  };
+  const getCalcBackgroundColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#242D44";
+      case 2:
+        return "#D2CDCD";
+      case 3:
+        return "#1E0936";
+      default:
+        return "#242D44";
     }
   };
   const getTextColor = (themeValue) => {
@@ -49,6 +147,18 @@ function App() {
         return "#434A59";
     }
   };
+  const getEqualButtonTextColor = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "#FFFFFF";
+      case 2:
+        return "#FFFFFF";
+      case 3:
+        return "#1A2327";
+      default:
+        return "#FFFFFF";
+    }
+  };
 
   const getDelBoxShadow = (themeValue) => {
     switch (themeValue) {
@@ -72,6 +182,30 @@ function App() {
         return "0px -4px 0px 0px #881C9E inset";
       default:
         return "0px -4px 0px 0px #B3A497 inset";
+    }
+  };
+  const getResetBoxShadow = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "0px -4px 0px 0px #414E73 inset";
+      case 2:
+        return "0px -4px 0px 0px #1B6066 inset";
+      case 3:
+        return "0px -4px 0px 0px #BE15F4 inset";
+      default:
+        return "0px -4px 0px 0px #414E73 inset";
+    }
+  };
+  const getEqualBoxShadow = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "0px -4px 0px 0px #93261A inset";
+      case 2:
+        return "0px -4px 0px 0px #873901 inset";
+      case 3:
+        return "0px -4px 0px 0px #6CF9F1 inset";
+      default:
+        return "0px -4px 0px 0px #93261A inset";
     }
   };
 
@@ -161,32 +295,43 @@ function App() {
             </label>
           </div>
         </div>
-        <div className=" flex items-center justify-end w-[327px] h-[88px] bg-[rgb(24,31,51)] rounded-[10px] mb-[24px]">
+        <div
+          className=" flex items-center justify-end w-[327px] h-[88px] bg-[rgb(24,31,51)] rounded-[10px] mb-[24px]"
+          style={{
+            backgroundColor: getDisplayBackgroundColor(themeValue),
+          }}
+        >
           <p
             className=" text-[#FFFFFF] text-[40px] pr-[24px]"
-            style={{ color: getTextColor(themeValue) }}
+            style={{
+              color: getTextColor(themeValue),
+            }}
           >
             {displayValue}
           </p>
         </div>
-        <div className="bg-[#242D44] rounded-[10px]">
+        <div
+          className="bg-[#242D44] rounded-[10px]"
+          style={{ backgroundColor: getCalcBackgroundColor(themeValue) }}
+        >
           <div className=" w-[327px]  grid grid-cols-4 gap-y-[13px] gap-x-[13px] p-[24px]">
             {[7, 8, 9, "DEL", 4, 5, 6, "+", 1, 2, 3, "-", ".", 0, "/", "*"].map(
               (item, index) => (
                 <button
                   key={index}
-                  className={`box-shadow w-[60px] h-[64px]
-                  ${
-                    item === "DEL" ? "bg-[#647198]" : "bg-[#EAE3DC]"
-                  } rounded-[5px]`}
+                  className={` rounded-[5px] text-[20px] font-bold w-[60px] h-[64px]
+                `}
                   style={
                     item === "DEL"
                       ? {
                           boxShadow: getDelBoxShadow(themeValue),
+                          backgroundColor: getDelBackgroundColor(themeValue),
+                          color: "#FFFFFF",
                         }
                       : {
                           boxShadow: getOtherBoxShadow(themeValue),
                           color: getButtonTextColor(themeValue),
+                          backgroundColor: getOtherBackgroundColor(themeValue),
                         }
                   }
                   onClick={() => {
@@ -210,14 +355,24 @@ function App() {
             {" "}
             <button
               onClick={handleResetClick}
-              className=" res-but w-[133px] h-[64px] bg-[#647198] rounded-[5px]"
+              className=" res-but 
+               font-bold w-[133px] h-[64px] bg-[#647198] text-white rounded-[5px]"
+              style={{
+                backgroundColor: getResetBackgroundColor(themeValue),
+                boxShadow: getResetBoxShadow(themeValue),
+              }}
             >
               {" "}
               RESET
             </button>{" "}
             <button
               onClick={handleEqualsClick}
-              className=" eq-but w-[133px] h-[64px] bg-[#D03F2F] rounded-[5px]"
+              className=" eq-but  text-[20px] font-bold w-[133px] h-[64px] bg-[#D03F2F] rounded-[5px]"
+              style={{
+                backgroundColor: getEqualBackgroundColor(themeValue),
+                boxShadow: getEqualBoxShadow(themeValue),
+                color: getEqualButtonTextColor(themeValue),
+              }}
             >
               =
             </button>
