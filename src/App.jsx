@@ -50,7 +50,7 @@ function App() {
     }
   };
 
-  const getBoxShadow = (themeValue) => {
+  const getDelBoxShadow = (themeValue) => {
     switch (themeValue) {
       case 1:
         return "0px -4px 0px 0px #414E73 inset";
@@ -60,6 +60,18 @@ function App() {
         return "0px -4px 0px 0px #BE15F4 inset";
       default:
         return "0px -4px 0px 0px #414E73 inset";
+    }
+  };
+  const getOtherBoxShadow = (themeValue) => {
+    switch (themeValue) {
+      case 1:
+        return "0px -4px 0px 0px #B3A497 inset";
+      case 2:
+        return "0px -4px 0px 0px #A79E91 inset";
+      case 3:
+        return "0px -4px 0px 0px #881C9E inset";
+      default:
+        return "0px -4px 0px 0px #B3A497 inset";
     }
   };
 
@@ -170,10 +182,10 @@ function App() {
                   style={
                     item === "DEL"
                       ? {
-                          boxShadow: getBoxShadow(themeValue),
+                          boxShadow: getDelBoxShadow(themeValue),
                         }
                       : {
-                          boxShadow: "0px -4px 0px 0px #B3A497 inset",
+                          boxShadow: getOtherBoxShadow(themeValue),
                           color: getButtonTextColor(themeValue),
                         }
                   }
