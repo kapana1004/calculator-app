@@ -6,6 +6,35 @@ function App() {
   const [displayValue, setDisplayValue] = useState("0");
   const [previousValue, setPreviousValue] = useState(null);
   const [operator, setOperator] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredReset, setIsHoveredReset] = useState(false);
+  const [isHoveredDel, setIsHoveredDel] = useState(false);
+  const [isHoveredDigit, setIsHoverDigit] = useState(false);
+
+  const handleHoverEqual = () => {
+    setIsHovered(true);
+  };
+  const handleHoverExitEqual = () => {
+    setIsHovered(false);
+  };
+  const handleHoverReset = () => {
+    setIsHoveredReset(true);
+  };
+  const handleHoverResetExit = () => {
+    setIsHoveredReset(false);
+  };
+  const handleHoverDel = () => {
+    setIsHoveredDel(true);
+  };
+  const handleHoverDelExit = () => {
+    setIsHoveredDel(false);
+  };
+  const handleHoverDigits = () => {
+    setIsHoverDigit(true);
+  };
+  const handleHoverDigitsExit = () => {
+    setIsHoverDigit(false);
+  };
 
   const handleThemeChange = (e) => {
     setThemeValue(parseInt(e.target.value, 10));
@@ -44,54 +73,7 @@ function App() {
         return "#434A59";
     }
   };
-  const getDelBackgroundColor = (themeValue) => {
-    switch (themeValue) {
-      case 1:
-        return "#647198";
-      case 2:
-        return "#378187";
-      case 3:
-        return "#56077C";
-      default:
-        return "#647198";
-    }
-  };
-  const getOtherBackgroundColor = (themeValue) => {
-    switch (themeValue) {
-      case 1:
-        return "#EAE3DC";
-      case 2:
-        return "#E5E4E1";
-      case 3:
-        return "#331C4D";
-      default:
-        return "#EAE3DC";
-    }
-  };
-  const getResetBackgroundColor = (themeValue) => {
-    switch (themeValue) {
-      case 1:
-        return "#647198";
-      case 2:
-        return "#378187";
-      case 3:
-        return "#56077C";
-      default:
-        return "#647198";
-    }
-  };
-  const getEqualBackgroundColor = (themeValue) => {
-    switch (themeValue) {
-      case 1:
-        return "#D03F2F";
-      case 2:
-        return "#C85402";
-      case 3:
-        return "#00DED0";
-      default:
-        return "#D03F2F";
-    }
-  };
+
   const getDisplayBackgroundColor = (themeValue) => {
     switch (themeValue) {
       case 1:
@@ -278,7 +260,7 @@ function App() {
                 123
               </span>
               <input
-                className=" w-[71px] h-[26px] appearance-none bg-[#242D44] rounded-[13px] pl-[5px] pr-[5px]"
+                className=" w-[71px] h-[26px] appearance-none bg-[#242D44] rounded-[13px] pl-[5px] pr-[5px] cursor-pointer"
                 style={{
                   backgroundColor: getDisplayBackgroundColor(themeValue),
                 }}
@@ -322,13 +304,35 @@ function App() {
                     item === "DEL"
                       ? {
                           boxShadow: getDelBoxShadow(themeValue),
-                          backgroundColor: getDelBackgroundColor(themeValue),
+                          backgroundColor:
+                            themeValue === 1
+                              ? isHoveredDel
+                                ? "#A2B2E1"
+                                : "#647198"
+                              : themeValue === 2
+                              ? isHoveredDel
+                                ? "#62B5BC"
+                                : "#378187"
+                              : isHoveredDel
+                              ? "#8631AF"
+                              : "#56077C",
                           color: "#FFFFFF",
                         }
                       : {
                           boxShadow: getOtherBoxShadow(themeValue),
                           color: getButtonTextColor(themeValue),
-                          backgroundColor: getOtherBackgroundColor(themeValue),
+                          backgroundColor:
+                            themeValue === 1
+                              ? isHoveredDigit
+                                ? "#FFFFFE"
+                                : "#EAE3DC"
+                              : themeValue === 2
+                              ? isHoveredDigit
+                                ? "#FFFFFF"
+                                : "#E5E4E1"
+                              : isHoveredDigit
+                              ? "#6C34AC"
+                              : "#331C4D",
                         }
                   }
                   onClick={() => {
@@ -342,6 +346,12 @@ function App() {
                       handleOperatorClick(item);
                     }
                   }}
+                  onMouseOver={
+                    item === "DEL" ? handleHoverDel : handleHoverDigits
+                  }
+                  onMouseOut={
+                    item === "DEL" ? handleHoverDelExit : handleHoverDigitsExit
+                  }
                 >
                   {item}
                 </button>
@@ -355,9 +365,22 @@ function App() {
               className=" res-but 
                font-bold w-[133px] h-[64px] bg-[#647198] text-white rounded-[5px] lg:w-[227px]"
               style={{
-                backgroundColor: getResetBackgroundColor(themeValue),
+                backgroundColor:
+                  themeValue === 1
+                    ? isHoveredReset
+                      ? "#A2B2E1"
+                      : "#647198"
+                    : themeValue === 2
+                    ? isHoveredReset
+                      ? "#62B5BC"
+                      : "#378187"
+                    : isHoveredReset
+                    ? "#8631AF"
+                    : "#56077C",
                 boxShadow: getResetBoxShadow(themeValue),
               }}
+              onMouseOver={handleHoverReset}
+              onMouseOut={handleHoverResetExit}
             >
               {" "}
               RESET
@@ -366,10 +389,24 @@ function App() {
               onClick={handleEqualsClick}
               className=" eq-but  text-[20px] font-bold w-[133px] h-[64px] bg-[#D03F2F] rounded-[5px] lg:w-[227px]"
               style={{
-                backgroundColor: getEqualBackgroundColor(themeValue),
+                backgroundColor:
+                  themeValue === 1
+                    ? isHovered
+                      ? "#F96B5B"
+                      : "#D03F2F"
+                    : themeValue === 2
+                    ? isHovered
+                      ? "#FF8A38"
+                      : "#C85402"
+                    : isHovered
+                    ? "#93FFF8"
+                    : "#00DED0",
+
                 boxShadow: getEqualBoxShadow(themeValue),
                 color: getEqualButtonTextColor(themeValue),
               }}
+              onMouseOver={handleHoverEqual}
+              onMouseOut={handleHoverExitEqual}
             >
               =
             </button>
