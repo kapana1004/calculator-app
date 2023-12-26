@@ -9,33 +9,28 @@ function App() {
 
   const handleThemeChange = (e) => {
     setThemeValue(parseInt(e.target.value, 10));
+    const newThemeValue = parseInt(e.target.value, 10);
+    setThemeValue(newThemeValue);
+
+    // Dynamically set the thumb color based on themeValue
+    const inputElement = document.getElementById("themerange");
+    if (inputElement) {
+      switch (newThemeValue) {
+        case 1:
+        case 1:
+          inputElement.style.setProperty("--thumb-color", "#D03F2F");
+          break;
+        case 2:
+          inputElement.style.setProperty("--thumb-color", "#C85402");
+          break;
+        case 3:
+          inputElement.style.setProperty("--thumb-color", "#00DED0");
+          break;
+        default:
+          inputElement.style.setProperty("--thumb-color", "#D03F2F");
+      }
+    }
   };
-
-  // const getThumbColor = (themeValue) => {
-  //   switch (themeValue) {
-  //     case 1:
-  //       return "#D03F2F";
-  //     case 2:
-  //       return "#C85402";
-  //     case 3:
-  //       return "#00DED0";
-  //     default:
-  //       return "#D03F2F";
-  //   }
-  // };
-  // const sliderThumbStyle = {
-  //   WebkitAppearance: "none",
-  //   appearance: "none",
-  //   borderRadius: "50%",
-  //   width: "16px",
-  //   height: "16px",
-  //   backgroundColor: getThumbColor(themeValue),
-  // };
-
-  // const inputElement = document.getElementById("themerange");
-  // if (inputElement) {
-  //   Object.assign(inputElement.style, sliderThumbStyle);
-  // }
 
   const getBackgroundColor = (themeValue) => {
     console.log("Theme Value:", themeValue);
@@ -285,7 +280,9 @@ function App() {
               </span>
               <input
                 className=" w-[71px] h-[26px] appearance-none bg-[#242D44] rounded-[13px] pl-[5px] pr-[5px]"
-                // style={{ backgroundColor: getThumbColor(themeValue) }}
+                style={{
+                  backgroundColor: getDisplayBackgroundColor(themeValue),
+                }}
                 type="range"
                 min="1"
                 max="3"
