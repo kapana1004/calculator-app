@@ -285,6 +285,7 @@ function App() {
               </span>
               <input
                 className=" w-[71px] h-[26px] appearance-none bg-[#242D44] rounded-[13px] pl-[5px] pr-[5px]"
+                // style={{ backgroundColor: getThumbColor(themeValue) }}
                 type="range"
                 min="1"
                 max="3"
