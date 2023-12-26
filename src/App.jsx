@@ -17,7 +17,6 @@ function App() {
     if (inputElement) {
       switch (newThemeValue) {
         case 1:
-        case 1:
           inputElement.style.setProperty("--thumb-color", "#D03F2F");
           break;
         case 2:
@@ -254,7 +253,7 @@ function App() {
       style={{ backgroundColor: getBackgroundColor(themeValue) }}
     >
       <div>
-        <div className=" flex flex-row items-center justify-between pl-[10px]">
+        <div className=" flex flex-row items-center justify-between pl-[10px] lg:w-[540px]">
           <h1
             className={` text-[32px] font-bold`}
             style={{ color: getTextColor(themeValue) }}
@@ -294,13 +293,13 @@ function App() {
           </div>
         </div>
         <div
-          className=" flex items-center justify-end w-[327px] h-[88px] bg-[rgb(24,31,51)] rounded-[10px] mb-[24px]"
+          className=" flex items-center justify-end w-[327px] h-[88px] bg-[rgb(24,31,51)] rounded-[10px] mb-[24px] lg:w-[540px]"
           style={{
             backgroundColor: getDisplayBackgroundColor(themeValue),
           }}
         >
           <p
-            className=" text-[#FFFFFF] text-[40px] pr-[24px]"
+            className=" text-[#FFFFFF] text-[56px] pr-[24px]"
             style={{
               color: getTextColor(themeValue),
             }}
@@ -309,15 +308,15 @@ function App() {
           </p>
         </div>
         <div
-          className="bg-[#242D44] rounded-[10px]"
+          className="bg-[#242D44] rounded-[10px] lg:w-[540px]"
           style={{ backgroundColor: getCalcBackgroundColor(themeValue) }}
         >
-          <div className=" w-[327px]  grid grid-cols-4 gap-y-[13px] gap-x-[13px] p-[24px]">
+          <div className=" w-[327px]  grid grid-cols-4 gap-y-[13px] gap-x-[13px] p-[24px] lg:w-[540px] lg:pl-[32px] ">
             {[7, 8, 9, "DEL", 4, 5, 6, "+", 1, 2, 3, "-", ".", 0, "/", "*"].map(
               (item, index) => (
                 <button
                   key={index}
-                  className={` rounded-[5px] text-[20px] font-bold w-[60px] h-[64px]
+                  className={` rounded-[5px] text-[20px] font-bold w-[60px] h-[64px] lg:w-[101px]
                 `}
                   style={
                     item === "DEL"
@@ -354,7 +353,7 @@ function App() {
             <button
               onClick={handleResetClick}
               className=" res-but 
-               font-bold w-[133px] h-[64px] bg-[#647198] text-white rounded-[5px]"
+               font-bold w-[133px] h-[64px] bg-[#647198] text-white rounded-[5px] lg:w-[227px]"
               style={{
                 backgroundColor: getResetBackgroundColor(themeValue),
                 boxShadow: getResetBoxShadow(themeValue),
@@ -365,7 +364,7 @@ function App() {
             </button>{" "}
             <button
               onClick={handleEqualsClick}
-              className=" eq-but  text-[20px] font-bold w-[133px] h-[64px] bg-[#D03F2F] rounded-[5px]"
+              className=" eq-but  text-[20px] font-bold w-[133px] h-[64px] bg-[#D03F2F] rounded-[5px] lg:w-[227px]"
               style={{
                 backgroundColor: getEqualBackgroundColor(themeValue),
                 boxShadow: getEqualBoxShadow(themeValue),
